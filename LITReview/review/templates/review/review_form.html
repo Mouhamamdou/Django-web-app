@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Créer une ritique</h1>
+
+<form action="" method="post">
+  {% csrf_token %}
+
+  {{ form.non_field_errors }}
+
+  <div class="form-group">
+    {{ form.ticket.label_tag }}
+    {{ form.ticket.errors }}
+    {{ form.ticket }}
+  </div>
+
+  <div class="form-group">
+    {{ form.headline.label_tag }}
+    {{ form.headline.errors }}
+    {{ form.headline }}
+  </div>
+
+  <div class="form-group">
+    {{ form.body.label_tag }}
+    {{ form.body.errors }}
+    {{ form.body }}
+  </div>
+
+  <div class="rating">
+        <span>Note :</span>
+        {% for choice in form.rating %}
+            <label for="{{ choice.id_for_label }}">
+                {{ choice.choice_label }}
+                {{ choice.tag }}
+            </label>
+        {% endfor %}
+  </div>
+
+  <input type="submit" value="Envoyer" class="btn btn-primary">
+
+</form>
+
+
+
+<form method="get" action="{% url 'review-list' %}">
+  {% csrf_token %}
+  <button type="submit" >Liste des critiques faites par {{ request.user }}</button>
+</form>
+{% endblock %}
+

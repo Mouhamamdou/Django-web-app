@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="reviews-container">
+
+    <p>Liste des Critiques :</p>
+
+    <ul>
+        {% for review in reviews %}
+        <li>
+            <a href="{% url 'review-detail' review.pk %}">{{ review.headline }}</a>
+            - <a href="{% url 'review-update' review.pk %}">[modifier]</a>
+        </li>
+       {% endfor %}
+    </ul>
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="user-follows-container">
+
+    <p>Liste des Utilisateurs Suivis :</p>
+
+    <ul>
+        {% for user_follows in users_follow %}
+        <li>
+            {{ user_follows.followed_user }}
+            - <a href="{% url 'user-follows-delete' user_follows.pk %}">[Désabonner]</a>
+
+
+        </li>
+       {% endfor %}
+    </ul>
+
+</div>
+
+
+{% endblock %}
+

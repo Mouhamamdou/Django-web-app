@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Créer un ticket</h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Créer">
+</form>
+
+<form method="get" action="{% url 'ticket-list' %}">
+  {% csrf_token %}
+  <button type="submit" >Liste des tickets créé par {{ request.user }} </button>
+</form>
+
+{% endblock %}

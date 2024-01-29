@@ -1,0 +1,123 @@
+body {
+    display: flex;
+    flex-direction: column;
+}
+  
+nav {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+    background-color: #cdcccc;
+}
+
+nav a {
+    margin-right: 4rem;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: auto; 
+}
+
+.brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.feed-item {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  width: calc(33.333% - 20px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+button, input[type="submit"] {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+  
+input[type="text"], 
+input[type="password"],
+textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+  
+.button-container {
+    display: flex;
+    justify-content: start;
+    gap: 100px; 
+}
+  
+.inline-form {
+    margin: 0; 
+}
+
+
+.star-rating {
+    color: #ffc107;
+}
+
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+form p {
+    position: relative;
+    margin-bottom: 40px;
+}
+  
+form p label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+}
+
+table {
+    width: 200%;
+}
+
+table, td {
+    border: 1px solid black;
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+  
+.form-group label {
+    margin-bottom: 10px; 
+}

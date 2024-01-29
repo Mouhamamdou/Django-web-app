@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="feed">
+
+    <div class="button-container">
+      
+      <form method="post" action="{% url 'ticket-create' %}">
+        {% csrf_token %}
+        <button type="submit" >Demander une critique</button>
+      </form>
+
+      <form method="post" action="{% url 'review-create' %}">
+        {% csrf_token %}
+        <button type="submit" >Créer une critique</button>
+      </form>
+
+    </div>
+      
+    {% for item in tickets_and_reviews %}
+      <div class="feed-item">
+
+        {% if item.is_ticket %}
+          <h4>{{ item.title }}: {{ item.user.username }} a demandé une critique</h4>
+          <p><strong>Description</strong>: {{ item.description }}</p>
+          {% if item.image %}
+            <img src="{{ item.image.url }}" alt="Image du billet" class="feed-item-image">
+          {% endif %}
+          <form method="get" action="{% url 'review-create-specific' ticket_id=item.id %}">
+              {% csrf_token %}
+              <button type="submit" >Créer une critique</button>
+          </form>
+          <p><strong>Ticket créé par</strong>: {{ item.user.username }} le {{ item.time_created|date:"d M Y H:i" }}</p>
+
+        {% elif item.is_review %}
+          <h4>{{ item.user.username }} a publié une critique sur {{ item.ticket.title }}</h4>
+          <p><strong>Titre</strong>: {{ item.headline }}</p>
+          <p><strong>Corps de la critique</strong>:{{ item.body }}</p>
+          <p><strong>Note</strong>:
+            <span class="star-rating">
+                {% for star in range_5 %}
+                    {% if star <= item.rating %}
+                        ★
+                    {% else %}
+                        ☆
+                    {% endif %}
+                {% endfor %}
+            </span>
+          </p>
+          {% if item.ticket.image %}
+            <img src="{{ item.ticket.image.url }}" alt="Image du livre" class="feed-item-image">
+          {% endif %}
+          <p><strong>Critique créé par</strong>: {{ item.user.username }} le {{ item.time_created|date:"d M Y H:i" }}</p>
+        {% endif %}
+
+      </div>
+    {% empty %}
+      <p>Aucun billet ou critique à afficher.</p>
+    {% endfor %}
+  </div>
+
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; première</a>
+            <a href="?page={{ page_obj.previous_page_number }}">précédente</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">suivante</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">dernière &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+{% endblock %}

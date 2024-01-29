@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="reviews-container">
+   <h2>Critique sur {{ review.ticket }}</h2>
+
+  <ul>
+   <li>Body : {{ review.body }}</li>
+   <li>Utilisateur : {{ review.user }}</li>
+  </ul>
+
+  <a href="{% url 'review-update' review.pk %}">Modifier</a>
+
+  <a href="{% url 'review-list' %}">Retour à la liste des critiques</a>
+
+  <a href="{% url 'review-delete' review.pk %}">Supprimer le critique</a>
+
+</div>
+
+{% endblock %}
