@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="tickets-container">
+    <p>Liste des Tickets :</p>
+
+    <ul>
+        {% for ticket in tickets %}
+        <li>
+            <a href="{% url 'ticket-detail' ticket.pk %}">{{ ticket.title }}</a>
+            - <a href="{% url 'ticket-update' ticket.pk %}">[modifier]</a>
+        </li>
+       {% endfor %}
+    </ul>
+</div>
+
+
+{% endblock %}

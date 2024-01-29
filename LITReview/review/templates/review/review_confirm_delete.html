@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="reviews-container">
+    <h1>Supprimer la critique</h1>
+
+    <p>Etes-vous sûr de vouloir supprimer la critique : {{ review.headline }} ?</p>
+
+    <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Supprimer">
+    </form>
+</div>
+
+
+{% endblock %}
+

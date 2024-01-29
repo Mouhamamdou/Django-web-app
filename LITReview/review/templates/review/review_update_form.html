@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Modifier votre critique</h1>
+
+  <form action="" method="post">
+
+  {% csrf_token %}
+
+  {{ form.non_field_errors }}
+
+   <p>
+    {{ form.ticket.errors }}
+    {{ form.ticket.label_tag }}
+    {{ form.ticket }}
+  </p>
+
+  <p>
+    {{ form.headline.errors }}
+    {{ form.headline.label_tag }}
+    {{ form.headline }}
+  </p>
+
+  <p>
+    {{ form.body.errors }}
+    {{ form.body.label_tag }}
+    {{ form.body }}
+  </p>
+
+  <div class="rating">
+        <span>Note :</span>
+        {% for choice in form.rating %}
+            <label for="{{ choice.id_for_label }}">
+                {{ choice.choice_label }}
+                {{ choice.tag }}
+            </label>
+        {% endfor %}
+  </div>
+
+
+    <input type="submit" value="Modifier">
+ </form>
+
+{% endblock %}

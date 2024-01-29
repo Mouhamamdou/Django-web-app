@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="user-follows-container">
+    <h1>Ne plus suivre cet utilisateur</h1>
+
+    <p>Etes-vous sûr de ne plus suivre cet utilisateur : {{ userfollows.followed_user }} ?</p>
+
+    <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Ne plus suivre">
+    </form>
+
+</div>
+
+
+{% endblock %}
+

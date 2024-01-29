@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="user-follows-container">
+
+  <h2>Suivre un utilisateur</h2>
+  <form action="" method="post" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Suivre</button>
+  </form>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} {{ message }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <form method="get" action="{% url 'user-follows-list' %}">
+    {% csrf_token %}
+    <button type="submit" >Liste des utilisateurs suivis</button>
+  </form>
+
+</div>
+
+{% endblock %}

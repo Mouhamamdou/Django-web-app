@@ -1,0 +1,4 @@
+ENV
+__pycache__
+media/images
+db.sqlite3
