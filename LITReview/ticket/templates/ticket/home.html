@@ -18,7 +18,7 @@
           <p><strong>Ticket créé par</strong>: {{ item.user.username }} le {{ item.time_created|date:"d M Y H:i" }}</p>
 
         {% elif item.is_review %}
-          <h4>Vous avez publié une critique sur {{ item.ticket.title }}</h4>
+          <h4>{{ item.user.username }} a publié une critique sur {{ item.ticket.title }}</h4>
           <p><strong>Titre</strong>: {{ item.headline }}</p>
           <p><strong>Corps de la critique</strong>:{{ item.body }}</p>
           <p><strong>Note</strong>:
