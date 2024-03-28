@@ -22,6 +22,13 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+    def get_initial(self):
+        initial = super().get_initial()
+        ticket_id = self.kwargs.get('ticket_id')
+        if ticket_id:
+            initial['ticket'] = get_object_or_404(Ticket, id=ticket_id)
+        return initial
+
 
 class ReviewUpdateView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
     model = Review
