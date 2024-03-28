@@ -20,6 +20,10 @@ class ReviewForm(forms.ModelForm):
 
     def clean_ticket(self):
         ticket = self.cleaned_data.get('ticket')
-        if Review.objects.filter(ticket=ticket).exists():
-            raise ValidationError("Une critique a déjà été postée pour ce ticket.")
+        if self.instance.pk:
+            if Review.objects.filter(ticket=ticket).exclude(pk=self.instance.pk).exists():
+                raise forms.ValidationError("Une critique a déjà été postée pour ce ticket.")
+        else:
+            if Review.objects.filter(ticket=ticket).exists():
+                raise forms.ValidationError("Une critique a déjà été postée pour ce ticket.")
         return ticket
